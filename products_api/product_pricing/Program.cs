@@ -1,3 +1,6 @@
+using product_pricing.Data;
+using product_pricing.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddSingleton<DataStore>();
+builder.Services.AddScoped<ProductPricingService>();
 
 var app = builder.Build();
 

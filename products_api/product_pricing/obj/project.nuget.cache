@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Qkc9AMRJ0uQ=",
+  "dgSpecHash": "zi2SF40EARI=",
   "success": true,
-  "projectFilePath": "C:\\HagWork\\demo\\products_api\\product_pricing\\product_pricing.csproj",
+  "projectFilePath": "C:\\Users\\paulh\\Source\\Repos\\product_pricing_api_blazor_app\\products_api\\product_pricing\\product_pricing.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\paulh\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.9\\microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
     "C:\\Users\\paulh\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"

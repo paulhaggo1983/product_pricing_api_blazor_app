@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\HagWork\\demo\\products_api\\product_pricing\\product_pricing.csproj": {}
+    "C:\\Users\\paulh\\Source\\Repos\\product_pricing_api_blazor_app\\products_api\\product_pricing\\product_pricing.csproj": {}
   },
   "projects": {
-    "C:\\HagWork\\demo\\products_api\\product_pricing\\product_pricing.csproj": {
+    "C:\\Users\\paulh\\Source\\Repos\\product_pricing_api_blazor_app\\products_api\\product_pricing\\product_pricing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\HagWork\\demo\\products_api\\product_pricing\\product_pricing.csproj",
+        "projectUniqueName": "C:\\Users\\paulh\\Source\\Repos\\product_pricing_api_blazor_app\\products_api\\product_pricing\\product_pricing.csproj",
         "projectName": "product_pricing",
-        "projectPath": "C:\\HagWork\\demo\\products_api\\product_pricing\\product_pricing.csproj",
+        "projectPath": "C:\\Users\\paulh\\Source\\Repos\\product_pricing_api_blazor_app\\products_api\\product_pricing\\product_pricing.csproj",
         "packagesPath": "C:\\Users\\paulh\\.nuget\\packages\\",
-        "outputPath": "C:\\HagWork\\demo\\products_api\\product_pricing\\obj\\",
+        "outputPath": "C:\\Users\\paulh\\Source\\Repos\\product_pricing_api_blazor_app\\products_api\\product_pricing\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

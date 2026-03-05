@@ -1,7 +1,8 @@
 ﻿namespace product_pricing.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using product_pricing.Dtos;
+
 using product_pricing.Services;
+using ProductPricing.Shared.Dtos;
 
 
 

@@ -65,3 +65,5 @@ C:\Users\paulh\Source\Repos\product_pricing_api_blazor_app\products_api\product_
 C:\Users\paulh\Source\Repos\product_pricing_api_blazor_app\products_api\product_pricing\obj\Debug\net9.0\product_pricing.pdb
 C:\Users\paulh\Source\Repos\product_pricing_api_blazor_app\products_api\product_pricing\obj\Debug\net9.0\product_pricing.genruntimeconfig.cache
 C:\Users\paulh\Source\Repos\product_pricing_api_blazor_app\products_api\product_pricing\obj\Debug\net9.0\ref\product_pricing.dll
+C:\Users\paulh\Source\Repos\product_pricing_api_blazor_app\products_api\product_pricing\bin\Debug\net9.0\ProductPricing.Shared.dll
+C:\Users\paulh\Source\Repos\product_pricing_api_blazor_app\products_api\product_pricing\bin\Debug\net9.0\ProductPricing.Shared.pdb

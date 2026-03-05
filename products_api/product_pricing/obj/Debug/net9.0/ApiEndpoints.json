@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[product_pricing.Dtos.ProductListItemDto, product_pricing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[ProductPricing.Shared.Dtos.ProductListItemDto, ProductPricing.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -35,7 +35,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "product_pricing.Dtos.ProductHistoryDto",
+        "Type": "ProductPricing.Shared.Dtos.ProductHistoryDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -60,13 +60,13 @@
       },
       {
         "Name": "request",
-        "Type": "product_pricing.Dtos.ApplyDiscountRequest",
+        "Type": "ProductPricing.Shared.Dtos.ApplyDiscountRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "product_pricing.Dtos.ApplyDiscountDto",
+        "Type": "ProductPricing.Shared.Dtos.ApplyDiscountDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -91,13 +91,13 @@
       },
       {
         "Name": "request",
-        "Type": "product_pricing.Dtos.UpdatePriceRequest",
+        "Type": "ProductPricing.Shared.Dtos.UpdatePriceRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "product_pricing.Dtos.UpdatePriceDto",
+        "Type": "ProductPricing.Shared.Dtos.UpdatePriceDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

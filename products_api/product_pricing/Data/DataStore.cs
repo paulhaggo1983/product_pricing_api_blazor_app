@@ -9,30 +9,37 @@ namespace product_pricing.Data
         public DataStore()
         {
             var now = DateTime.UtcNow;
+            var random = new Random();
 
-            _products = new List<Product>
-        {
-            new Product
+            _products = new List<Product>();
+
+            for (int i = 1; i <= 100; i++)
             {
-                Id = 1,
-                Name = "Product A",
-                CurrentPrice = 100m,
-                LastUpdated = now.AddDays(-1),
-                PriceHistory = new List<PriceHistoryEntry>
+                var basePrice = Math.Round((decimal)(random.NextDouble() * 99) + 1, 2);
+
+                var product = new Product
                 {
-                    new PriceHistoryEntry { Price = 120m, Date = new DateOnly(2024, 9, 1) },
-                    new PriceHistoryEntry { Price = 110m, Date = new DateOnly(2024, 8, 15) },
-                    new PriceHistoryEntry { Price = 100m, Date = new DateOnly(2024, 8, 10) },
+                    Id = i,
+                    Name = $"Product {i}",
+                    CurrentPrice = basePrice,
+                    LastUpdated = now.AddDays(-random.Next(0, 30)),
+                    PriceHistory = new List<PriceHistoryEntry>()
+                };
+
+                // Random history length between 4 and 10
+                int historyCount = random.Next(4, 11);
+
+                for (int j = 0; j < historyCount; j++)
+                {
+                    product.PriceHistory.Add(new PriceHistoryEntry
+                    {
+                        Price = basePrice + random.Next(-20, 40),
+                        Date = DateOnly.FromDateTime(now.AddDays(-random.Next(5, 60)))
+                    });
                 }
-            },
-            new Product
-            {
-                Id = 2,
-                Name = "Product B",
-                CurrentPrice = 200m,
-                LastUpdated = now.AddDays(-2)
+
+                _products.Add(product);
             }
-        };
         }
 
         public List<Product> Products => _products;

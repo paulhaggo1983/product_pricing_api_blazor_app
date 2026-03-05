@@ -1,0 +1,63 @@
+﻿@page "/productlist"
+@using ProductPricing.Shared.Dtos
+@using System.Globalization
+@inject BlazorApp1.Services.ProductPricingApiClient Api
+@inject DialogService DialogService
+
+<h3>Product List</h3>
+
+@if (products == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <RadzenTable style="height:335px">
+        <RadzenTableHeader>
+            <RadzenTableHeaderRow>
+                <RadzenTableHeaderCell>Product Id</RadzenTableHeaderCell>
+                <RadzenTableHeaderCell>Product Name</RadzenTableHeaderCell>
+                <RadzenTableHeaderCell>Product Price</RadzenTableHeaderCell>
+                <RadzenTableHeaderCell>Last Updated</RadzenTableHeaderCell>
+                <RadzenTableHeaderCell>Actions</RadzenTableHeaderCell>
+            </RadzenTableHeaderRow>
+        </RadzenTableHeader>
+
+        <RadzenTableBody>
+            @foreach (var item in products)
+            {
+                <RadzenTableRow>
+                    <RadzenTableCell>@item.Id</RadzenTableCell>
+                    <RadzenTableCell>@item.Name</RadzenTableCell>
+                    <RadzenTableCell>@item.Price.ToString("C", new CultureInfo("en-GB"))</RadzenTableCell>
+                    <RadzenTableCell>@item.LastUpdated</RadzenTableCell>
+
+                    <RadzenTableCell>
+                        <RadzenButton Text="History"
+                                      ButtonStyle="ButtonStyle.Secondary"
+                                      Size="ButtonSize.Small"
+                                      Click="@(async () => await OpenHistory(item.Id))" />
+                    </RadzenTableCell>
+                </RadzenTableRow>
+            }
+        </RadzenTableBody>
+    </RadzenTable>
+}
+
+@code {
+    private List<ProductListItemDto>? products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await Api.GetProductsAsync();
+    }
+
+    private async Task OpenHistory(int productId)
+    {
+        await DialogService.OpenAsync<ProductDetail>(
+            $"Product {productId} History",
+            new Dictionary<string, object> { { "ProductId", productId } },
+            new DialogOptions { Width = "700px", Height = "500px", Resizable = true, Draggable = true }
+        );
+    }
+}

@@ -1,0 +1,29 @@
+﻿@using ProductPricing.Shared.Dtos
+@inject BlazorApp1.Services.ProductPricingApiClient Api
+
+<h3>Product @ProductId History</h3>
+
+@if (history == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <ul>
+        @foreach (var h in history.PriceHistory)
+        {
+            <li>@h.Date - @h.Price</li>
+        }
+    </ul>
+}
+
+@code {
+    [Parameter] public int ProductId { get; set; }
+
+    private ProductHistoryDto? history;
+
+    protected override async Task OnInitializedAsync()
+    {
+        history = await Api.GetHistoryAsync(ProductId);
+    }
+}

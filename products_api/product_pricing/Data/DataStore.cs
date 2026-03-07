@@ -26,7 +26,6 @@ namespace product_pricing.Data
                     PriceHistory = new List<PriceHistoryEntry>()
                 };
 
-                // Random history length between 4 and 10
                 int historyCount = random.Next(4, 11);
 
                 for (int j = 0; j < historyCount; j++)

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "..\blazor\Bla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductPricing.Shared", "..\shared\ProductPricing.Shared\ProductPricing.Shared.csproj", "{5D217BDC-D53A-4BEC-9AB9-DE757A75701A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductPricingTests", "..\testing\ProductPricingTests\ProductPricingTests.csproj", "{42F8F404-7493-4042-960B-82AD3192F5F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5D217BDC-D53A-4BEC-9AB9-DE757A75701A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D217BDC-D53A-4BEC-9AB9-DE757A75701A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D217BDC-D53A-4BEC-9AB9-DE757A75701A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42F8F404-7493-4042-960B-82AD3192F5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42F8F404-7493-4042-960B-82AD3192F5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42F8F404-7493-4042-960B-82AD3192F5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42F8F404-7493-4042-960B-82AD3192F5F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

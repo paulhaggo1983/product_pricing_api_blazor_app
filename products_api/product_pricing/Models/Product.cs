@@ -8,7 +8,6 @@
         public decimal CurrentPrice { get; set; }
         public DateTime LastUpdated { get; set; }
 
-        // Keeping most recent first
         public List<PriceHistoryEntry> PriceHistory { get; set; } = new();
     }
 }

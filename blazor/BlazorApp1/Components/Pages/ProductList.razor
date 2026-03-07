@@ -1,8 +1,7 @@
 ﻿@page "/productlist"
 @using ProductPricing.Shared.Dtos
 @using System.Globalization
-@inject BlazorApp1.Services.ProductPricingApiClient Api
-@inject DialogService DialogService
+@inherits ProductListBase
 
 <h3>Product List</h3>
 
@@ -12,7 +11,7 @@
 }
 else
 {
-    <RadzenTable style="height:335px">
+    <RadzenTable style="height:80vh">
         <RadzenTableHeader>
             <RadzenTableHeaderRow>
                 <RadzenTableHeaderCell>Product Id</RadzenTableHeaderCell>
@@ -42,22 +41,4 @@ else
             }
         </RadzenTableBody>
     </RadzenTable>
-}
-
-@code {
-    private List<ProductListItemDto>? products;
-
-    protected override async Task OnInitializedAsync()
-    {
-        products = await Api.GetProductsAsync();
-    }
-
-    private async Task OpenHistory(int productId)
-    {
-        await DialogService.OpenAsync<ProductDetail>(
-            $"Product {productId} History",
-            new Dictionary<string, object> { { "ProductId", productId } },
-            new DialogOptions { Width = "700px", Height = "500px", Resizable = true, Draggable = true }
-        );
-    }
 }

@@ -1,29 +1,121 @@
 ﻿@using ProductPricing.Shared.Dtos
-@inject BlazorApp1.Services.ProductPricingApiClient Api
+@using System.Globalization
+@using Radzen
 
-<h3>Product @ProductId History</h3>
+@inherits ProductDetailBase
 
-@if (history == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <ul>
-        @foreach (var h in history.PriceHistory)
-        {
-            <li>@h.Date - @h.Price</li>
-        }
-    </ul>
-}
+<div class="pd-container">
+    <div class="pd-header">
+        <div>
+            <div class="pd-title">Product @ProductId</div>
+            @if (history != null)
+            {
+                <div class="pd-subtitle">
+                    History entries: @history.PriceHistory.Count
+                </div>
+            }
+        </div>
 
-@code {
-    [Parameter] public int ProductId { get; set; }
+        <RadzenButton Icon="refresh"
+                      Text="Refresh"
+                      ButtonStyle="ButtonStyle.Light"
+                      Size="ButtonSize.Small"
+                      Click="@Reload" />
+    </div>
 
-    private ProductHistoryDto? history;
-
-    protected override async Task OnInitializedAsync()
+    @if (history == null)
     {
-        history = await Api.GetHistoryAsync(ProductId);
+        <div class="pd-loading">Loading...</div>
     }
-}
+    else
+    {
+        <div class="pd-grid">
+
+            <!-- Left: Actions -->
+            <div class="pd-actions">
+                <div class="pd-card">
+                    <div class="pd-card-title">Discount</div>
+
+                    <RadzenLabel Text="Discount (%)" />
+                    <RadzenNumeric TValue="decimal?"
+                                   @bind-Value="newDiscount"
+                                   Min="0"
+                                   Max="100"
+                                   Step="1"
+                                   Style="width:100%;" />
+
+                    <div class="pd-row">
+                        <RadzenButton Text="Preview"
+                                      ButtonStyle="ButtonStyle.Primary"
+                                      Click="@PreviewDiscount"
+                                      Style="flex:1;" />
+
+                        <RadzenButton Text="Update"
+                                      ButtonStyle="ButtonStyle.Secondary"
+                                      Click="@ApplyDiscountUpdate"
+                                      Disabled="@(previewDiscountedPrice == null)"
+                                      Style="flex:1;" />
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(discountResult))
+                    {
+                        <div class="pd-hint">@((MarkupString)discountResult)</div>
+                    }
+                </div>
+
+                <div class="pd-card">
+                    <div class="pd-card-title">Update Price</div>
+
+                    <RadzenLabel Text="New Price (£)" />
+                    <RadzenNumeric TValue="decimal?"
+                                   @bind-Value="newPrice"
+                                   Min="0.01m"
+                                   Step="0.01m"
+                                   Format="£0.00"
+                                   Style="width:100%;" />
+
+                    <div class="pd-row">
+                        <RadzenButton Text="Update"
+                                      ButtonStyle="ButtonStyle.Secondary"
+                                      Click="@UpdatePrice"
+                                      Style="flex:1;" />
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(priceResult))
+                    {
+                        <div class="pd-hint">@priceResult</div>
+                    }
+                </div>
+            </div>
+
+            <!-- Right: History -->
+            <div class="pd-history">
+                <div class="pd-card pd-card-fill">
+                    <div class="pd-card-title">Price History</div>
+
+                    <div class="pd-table-wrap">
+                        <RadzenTable class="pd-table">
+                            <RadzenTableHeader>
+                                <RadzenTableHeaderRow>
+                                    <RadzenTableHeaderCell>Date</RadzenTableHeaderCell>
+                                    <RadzenTableHeaderCell>Price</RadzenTableHeaderCell>
+                                </RadzenTableHeaderRow>
+                            </RadzenTableHeader>
+
+                            <RadzenTableBody>
+                                @foreach (var h in history.PriceHistory)
+                                {
+                                    <RadzenTableRow>
+                                        <RadzenTableCell>@h.Date</RadzenTableCell>
+                                        <RadzenTableCell>@h.Price.ToString("C", new CultureInfo("en-GB"))</RadzenTableCell>
+                                    </RadzenTableRow>
+                                }
+                            </RadzenTableBody>
+                        </RadzenTable>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>

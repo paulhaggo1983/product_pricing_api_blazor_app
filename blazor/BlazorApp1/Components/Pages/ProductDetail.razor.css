@@ -1,0 +1,113 @@
+﻿.pd-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+}
+
+.pd-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.pd-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.pd-subtitle {
+    font-size: 0.85rem;
+    opacity: 0.75;
+}
+
+.pd-loading {
+    padding: 12px;
+}
+
+.pd-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 12px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.pd-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+}
+
+.pd-history {
+    min-height: 0;
+    height: 100%;
+}
+
+.pd-card {
+    border: var(--rz-panel-border);
+    background: var(--rz-panel-background-color);
+    box-shadow: var(--rz-panel-shadow);
+    border-radius: var(--rz-border-radius);
+    padding: 12px;
+}
+
+.pd-card-fill {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.pd-card-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.pd-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.pd-hint {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+.pd-preview {
+    margin-top: 8px;
+    padding: 8px 10px;
+    border-radius: var(--rz-border-radius);
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 0.95rem;
+}
+
+.pd-table-wrap {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    margin-top: 8px;
+}
+
+.pd-table {
+    width: 100%;
+}
+
+:deep(.rz-dialog-content) {
+    height: calc(100% - 56px);
+    overflow: hidden;
+}
+
+:deep(.rz-dialog) {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+}

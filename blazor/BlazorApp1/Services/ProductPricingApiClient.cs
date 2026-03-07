@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Json;
-using ProductPricing.Shared.Dtos;
+﻿using ProductPricing.Shared.Dtos;
 
 namespace BlazorApp1.Services;
 
@@ -7,37 +6,55 @@ public class ProductPricingApiClient
 {
     private readonly HttpClient _http;
 
+
     public ProductPricingApiClient(HttpClient http)
     {
         _http = http;
     }
 
+    // Get all products
     public async Task<List<ProductListItemDto>> GetProductsAsync()
-        => await _http.GetFromJsonAsync<List<ProductListItemDto>>("api/products")
-           ?? new List<ProductListItemDto>();
-
-    public async Task<ProductHistoryDto?> GetHistoryAsync(int id)
-        => await _http.GetFromJsonAsync<ProductHistoryDto>($"api/products/{id}");
-
-    public async Task<ApplyDiscountDto?> ApplyDiscountAsync(int id, decimal discountPercentage)
     {
-        var res = await _http.PostAsJsonAsync(
-            $"api/products/{id}/apply-discount",
-            new ApplyDiscountRequest { DiscountPercentage = discountPercentage });
+        var products = await _http.GetFromJsonAsync<List<ProductListItemDto>>("api/products");
 
-        return res.IsSuccessStatusCode
-            ? await res.Content.ReadFromJsonAsync<ApplyDiscountDto>()
-            : null;
+        return products ?? new List<ProductListItemDto>();
     }
 
+    // Get price history for a product
+    public async Task<ProductHistoryDto?> GetHistoryAsync(int id)
+    {
+        return await _http.GetFromJsonAsync<ProductHistoryDto>($"api/products/{id}");
+    }
+
+    // Apply a discount to a product
+    public async Task<ApplyDiscountDto?> ApplyDiscountAsync(int id, decimal discountPercentage)
+    {
+        var response = await _http.PostAsJsonAsync(
+            $"api/products/{id}/apply-discount",
+            new ApplyDiscountRequest
+            {
+                DiscountPercentage = discountPercentage
+            });
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
+        return await response.Content.ReadFromJsonAsync<ApplyDiscountDto>();
+    }
+
+    // Update the product price
     public async Task<UpdatePriceDto?> UpdatePriceAsync(int id, decimal newPrice)
     {
-        var res = await _http.PutAsJsonAsync(
+        var response = await _http.PutAsJsonAsync(
             $"api/products/{id}/update-price",
-            new UpdatePriceRequest { NewPrice = newPrice });
+            new UpdatePriceRequest
+            {
+                NewPrice = newPrice
+            });
 
-        return res.IsSuccessStatusCode
-            ? await res.Content.ReadFromJsonAsync<UpdatePriceDto>()
-            : null;
+        if (!response.IsSuccessStatusCode)
+            return null;
+
+        return await response.Content.ReadFromJsonAsync<UpdatePriceDto>();
     }
 }
